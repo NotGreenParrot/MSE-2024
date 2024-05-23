@@ -24,4 +24,6 @@ public class Student {
         }
         return firstName + " \"" + nickName + "\" " + lastName + " ID: " + studentID;
     }
+
+    
 }

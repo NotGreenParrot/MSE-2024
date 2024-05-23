@@ -1,0 +1,10 @@
+{
+    "settings": {
+        "java.project.explorer.showNonJavaResources": false
+    },
+    "folders": [
+        {
+            "path": ".git"
+        }
+    ]
+}
