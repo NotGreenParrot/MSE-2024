@@ -8,7 +8,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 public class Parse{
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        parseSheet();
+    }
+    public static void parseSheet() {
         try  
         {  
         File file = new File("/workspaces/MSE-2024/datastore/Falconia1_RGBdata.xlsx");   //creating a new file instance  
@@ -17,6 +20,9 @@ public class Parse{
         XSSFWorkbook wb = new XSSFWorkbook(fis);   
         XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
         Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
+        for(int i = 0; i < 129; i++){
+            itr.next();
+        }
         while (itr.hasNext())                 
         {  
         Row row = itr.next();  
