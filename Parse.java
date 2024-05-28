@@ -5,27 +5,32 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.xssf.usermodel.XSSFSheet;  
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;  
+import java.util.ArrayList;
 
 
 public class Parse{
-    public static void main(String[] args) {
-        try  
-        {  
+    private ArrayList<Student> list;
+    private ArrayList<Teacher> list2;
+    public static void main(String[] args){
+        parseSheet();
+    }
+    public static void parseSheet() {
+        try {  
         File file = new File("/workspaces/MSE-2024/datastore/Falconia1_RGBdata.xlsx");   //creating a new file instance  
         FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file  
         //creating Workbook instance that refers to .xlsx file  
         XSSFWorkbook wb = new XSSFWorkbook(fis);   
         XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
         Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
-        while (itr.hasNext())                 
-        {  
+        for(int i = 0; i < 1; i++){
+            itr.next();
+        }
+        while (itr.hasNext()) {  
         Row row = itr.next();  
         Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column  
-        while (cellIterator.hasNext())   
-        {  
+        while (cellIterator.hasNext()) {  
         Cell cell = cellIterator.next();  
-        switch (cell.getCellType())               
-        {  
+        switch (cell.getCellType()){  
         case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
         System.out.print(cell.getStringCellValue() + "\t\t\t");  
         break;  
@@ -42,5 +47,9 @@ public class Parse{
         {  
         e.printStackTrace();  
         }  
+    }
+
+    private static void parseHelp(){
+
     }
 }
