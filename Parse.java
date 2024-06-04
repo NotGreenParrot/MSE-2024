@@ -141,7 +141,7 @@ public class Parse{
         }  
     }
 
-    public static void ParseReq() {
+    public static void parseReq() {
         
         try {  
             ArrayList<Student> list = new ArrayList<Student>();
@@ -160,12 +160,12 @@ public class Parse{
             while (itr.hasNext()) {  
             Row row = itr.next();  
             Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column 
-            cellIterator.next(); //set up and iterate through rows
+            //cellIterator.next(); //set up and iterate through rows
              
             Cell cell = cellIterator.next(); 
             if(!checkIfRowIsEmpty(row) /* || row.getCellType() == Cell.CELL_TYPE_BLANK*/) {
             
-            cell = cellIterator.next();
+            //cell = cellIterator.next();
             String last;
             if(cell.getCellType() == Cell.CELL_TYPE_STRING) {
                 last = cell.getStringCellValue();
@@ -194,6 +194,7 @@ public class Parse{
     
     
 
+            System.out.println(id);
             for(int j = 0; j < 5; j++){
                 cell = cellIterator.next();
                 String email;
@@ -203,7 +204,13 @@ public class Parse{
                     email = "[NO EMAIL PROVIDED]";
                 }
 
-                email = email.substring(0,email.indexOf('@'));
+                if(email.indexOf('@')!=-1){
+                    email = email.substring(0,email.indexOf('@'));
+                } else if(email.lastIndexOf('2')!=-1) {
+                    email = email.substring(0, email.indexOf('2'));
+                } else {
+                    email = "[POOR EMAIL FORMAT]" +email;
+                }
 
 
                 int loc = -1; // location of teacher in the teacher arraylist
@@ -214,8 +221,9 @@ public class Parse{
                     }
                 } 
             
+                Student add = new Student(first, last, id);
                 if(loc == -1){ // creates new teacher object if teacher not found, otherwise adds the student to existing teacher
-                   Teacher teach = new Teacher(teacher, email);
+                   Teacher teach = new Teacher(email);
                    list2.add(teach);
                    teach.add(add);
                 } else {
