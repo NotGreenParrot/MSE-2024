@@ -12,6 +12,7 @@ public class Parse{
     public static void main(String[] args){
         parseRec();
     }
+    @SuppressWarnings("resource")
     public static void parseRec() {
         try {  
             
@@ -189,27 +190,38 @@ public class Parse{
                 id  = 0;
             }
     
-            cell = cellIterator.next();
            
     
     
-    
-            int loc = -1; // location of teacher in the teacher arraylist
-            for(int i = 0; i < list2.size(); i++){
-               Teacher t = list2.get(i);
-                if(teacher.equals(t.getLast())){
-                    loc = i;
+
+            for(int j = 0; j < 5; j++){
+                cell = cellIterator.next();
+                String email;
+                if(cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                    email = cell.getStringCellValue();
+                } else {
+                    email = "[NO EMAIL PROVIDED]";
                 }
-            } 
+
+                email = email.substring(0,email.indexOf('@'));
+
+
+                int loc = -1; // location of teacher in the teacher arraylist
+                for(int i = 0; i < list2.size(); i++){
+                  Teacher t = list2.get(i);
+                    if(email.equals(t.getEmail())){
+                    loc = i;
+                    }
+                } 
             
-            if(loc == -1){ // creates new teacher object if teacher not found, otherwise adds the student to existing teacher
-                Teacher teach = new Teacher(teacher, email);
-                list2.add(teach);
-                teach.add(add);
-            } else {
-                list2.get(loc).add(add);
+                if(loc == -1){ // creates new teacher object if teacher not found, otherwise adds the student to existing teacher
+                   Teacher teach = new Teacher(teacher, email);
+                   list2.add(teach);
+                   teach.add(add);
+                } else {
+                    list2.get(loc).add(add);
+                }
             }
-    
             /*switch (cell.getCellType()){  
             case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
             System.out.print(cell.getStringCellValue() + "\t\t\t");  

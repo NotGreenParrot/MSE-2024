@@ -3,7 +3,7 @@ public class Teacher {
 
 
     private String lastName;
-    private String email; // with or without @mcpsmd.xxx
+    private String email; // without @mcpsmd.xxx
     private ArrayList<Student> list;
 
 
@@ -11,6 +11,12 @@ public class Teacher {
         lastName = last;
         email = address;
         list = new ArrayList<Student>();
+    }
+
+    public Teacher(String address){
+        lastName = "";
+        email = address;
+        list = new ArrayList<>();
     }
 
     public void add(Student g){
@@ -31,5 +37,9 @@ public class Teacher {
 
     public String getLast(){
         return lastName;
+    }
+
+    public String getEmail(){
+        return email;
     }
 }
