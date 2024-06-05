@@ -74,9 +74,10 @@ public class Parse{
             id  = 0;
         }
 
-        for(int i = 0; i < 7; i++){
+        System.out.println(id);
+        for(int i = 0; i < 9; i++){
             if(row.getRowNum()==0 || row.getRowNum()==1){
-            continue; //just skip the rows if row number is 0 or 1
+            //continue; //just skip the rows if row number is 0 or 1
            }
             cell = cellIterator.next();
         }
