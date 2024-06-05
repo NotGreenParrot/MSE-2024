@@ -98,22 +98,22 @@ public class Parse{
         }
 
 
-        Student add = new Student(first, last, id, recs);
+        Teacher teach = new Teacher(teacher, email);
+        Student add = new Student(first, last, id);
 
         int loc = -1; // location of teacher in the teacher arraylist
-        for(int i = 0; i < list2.size(); i++){
-           Teacher t = list2.get(i);
-            if(teacher.equals(t.getLast())){
+        for(int i = 0; i < list.size(); i++){
+           Student t = list.get(i);
+            if(t.equals(add)){
                 loc = i;
             }
         } 
         
         if(loc == -1){ // creates new teacher object if teacher not found, otherwise adds the student to existing teacher
-            Teacher teach = new Teacher(teacher, email);
-            list2.add(teach);
-            teach.add(add);
+        Student added = new Student(first, last, id);
+            added.addTeach(teach);
         } else {
-            list2.get(loc).add(add);
+            list.get(loc).addTeach(teach);
         }
 
         /*switch (cell.getCellType()){  
@@ -126,8 +126,8 @@ public class Parse{
         default:  
          }  */
 
-         for(int i = 0; i < list2.size(); i++){
-            list2.get(i).print();
+         for(int i = 0; i < list.size(); i++){
+            list.get(i).printOut();
             System.out.println();
         }
         }  
@@ -193,7 +193,6 @@ public class Parse{
     
     
 
-            System.out.println(id);
             for(int j = 0; j < 5; j++){
                 cell = cellIterator.next();
                 String email;
@@ -238,6 +237,10 @@ public class Parse{
             break;  
             default:  
              }  */
+             for(int i = 0; i < list2.size(); i++){
+                list2.get(i).print();
+                System.out.println();
+            }
             }  
             System.out.println("");  
             }  
@@ -246,6 +249,7 @@ public class Parse{
             {  
             e.printStackTrace();  
             }  
+            
     }
 
     private static boolean checkIfRowIsEmpty(Row row) { // checks if row is empty

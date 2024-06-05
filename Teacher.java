@@ -5,12 +5,21 @@ public class Teacher {
     private String lastName;
     private String email; // without @mcpsmd.xxx
     private ArrayList<Student> list;
+    private boolean isRecommended;
 
 
     public Teacher(String last, String address){
         lastName = last;
         email = address;
         list = new ArrayList<Student>();
+        isRecommended = false;
+    }
+
+    public Teacher(String address, boolean rec){
+        lastName = "";
+        email = address;
+        list = new ArrayList<>();
+        isRecommended = rec;
     }
 
     public Teacher(String address){
@@ -24,9 +33,9 @@ public class Teacher {
     }
 
     public void print(){
-            System.out.println(lastName + " \n" + email);
+            System.out.println(lastName + " \n" + email + "@mcpsmd.org");
             for(Student i : list){
-                System.out.println(i);
+                System.out.println(i.toString());
             }
 
             String out = "";
@@ -41,5 +50,8 @@ public class Teacher {
 
     public String getEmail(){
         return email;
+    }
+    public boolean isRec(){
+        return isRecommended;
     }
 }
