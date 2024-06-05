@@ -1,29 +1,26 @@
-<link rel="stylesheet" href="style.css">
-<applet code="Main.class" width="200" height="200"></applet>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <div class="custom-file-input-container">
+        <input type="file" name="file" accept=".csv" id="fileInput" class="custom-file-input">
+        <label for="fileInput" id="fileLabel" class="custom-file-label">Choose file</label>
+    </div>
+    <input type="submit" value="upload" class="custom-submit-button">
 
-<label for="avatar">Choose the '.xslx' file from the teacher responses:</label>
-
-<input type="file" id="avatar" name="avatar" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
-
-<!DOCTYPE html>
-
+    <!DOCTYPE html>
 <html>
+  <a href="SpringFileUpload/SpringFileUpload/src/main/webapp/upload.jsp">link</a>
 <head>
-<meta charset="utf-8">
-<title>
-    CSS-Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
 
-<h1>CSS-Test</h1>
-
-<div id="box-one">
-<p>This is box one.</p>
-</div>
-
-<div id="box-two">
-<p>This is box two.</p>
-</div>
-
-</body>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+      <div class="custom-file-input-container">
+          <input type="file" name="file" accept=".csv" id="fileInput" class="custom-file-input">
+          <label for="fileInput" id="fileLabel" class="custom-file-label">Choose file</label>
+      </div>
+      <input type="submit" value="upload" class="custom-submit-button">
+  </form>
 </html>
+</form>

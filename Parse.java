@@ -12,8 +12,7 @@ public class Parse{
     public static void main(String[] args){
         parseRec();
     }
-    @SuppressWarnings("resource")
-    public static void parseRec() {
+    public static void parseRec() { // parses through teacher recs
         try {  
             
         ArrayList<Student> list = new ArrayList<Student>();
@@ -141,7 +140,7 @@ public class Parse{
         }  
     }
 
-    public static void parseReq() {
+    public static void parseReq() { // parses through student requests
         
         try {  
             ArrayList<Student> list = new ArrayList<Student>();
