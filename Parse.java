@@ -146,7 +146,7 @@ public class Parse{
             ArrayList<Student> list = new ArrayList<Student>();
             
             ArrayList<Teacher> list2 = new ArrayList<Teacher>();
-            File file = new File("/workspaces/MSE-2024/datastore/NHS Teacher Rec Requests .xlsx");   //creating a new file instance  
+            File file = new File("/workspaces/MSE-2024/datastore/Untitled spreadsheet (1).xlsx");   //creating a new file instance  
             FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file  
             //creating Workbook instance that refers to .xlsx file  
             XSSFWorkbook wb = new XSSFWorkbook(fis);   

@@ -4,7 +4,7 @@ import java.util.Properties;
 public class Main{
     public static void main(String[] args ) throws IOException{
         System.out.println("Hello World!");
-        //Parse.parseRec();
+        Parse.parseRec();
         Parse.parseReq();
         Properties properties = new Properties();
 /*to access your filename.properties file */
