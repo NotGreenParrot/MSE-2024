@@ -4,16 +4,22 @@ public class Student {
     private String lastName;
     private int studentID;
     private ArrayList<Teacher> list;
+    private boolean subThree;
 
     public Student(String first, String last, int ID){
         firstName = first;
         lastName = last;
         studentID = ID;
         list = new ArrayList<Teacher>();
+        subThree = false;
+    }
+
+    public String getLast(){
+        return lastName;
     }
 
     public boolean equals(Student other){
-        return firstName.equals(other.firstName) && studentID == other.studentID;
+        return this.firstName.equals(other.firstName) && this.studentID == other.studentID;
     }
 
     public String toString(boolean rec){
@@ -49,7 +55,21 @@ public class Student {
     }
 
     public void printOut(){
-        System.out.println(first + last + id);
+        if(subThree){
+            System.out.print("[HAS RATING OF 3 OR LOWER]");
+        }
+        System.out.println(firstName + " " + lastName + " (" + studentID + ") Recs:");
+        for(int i = 0; i < list.size(); i++){
+            if(!list.get(i).isRec()){
+                System.out.print("DOES NOT RECOMMEND - ");
+            }
+            
+            System.out.println(list.get(i).getLast());
+        }
+    }
+
+    public void isSubThree(){
+        subThree = true;
     }
 
     

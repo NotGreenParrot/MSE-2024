@@ -8,11 +8,11 @@ public class Teacher {
     private boolean isRecommended;
 
 
-    public Teacher(String last, String address){
+    public Teacher(String last, String address, boolean rec){
         lastName = last;
         email = address;
         list = new ArrayList<Student>();
-        isRecommended = false;
+        isRecommended = rec;
     }
 
     public Teacher(String address, boolean rec){

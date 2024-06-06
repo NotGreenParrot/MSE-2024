@@ -13,12 +13,13 @@ public class Parse{
         parseRec();
     }
     public static void parseRec() { // parses through teacher recs
-        try {  
             
         ArrayList<Student> list = new ArrayList<Student>();
         
         ArrayList<Teacher> list2 = new ArrayList<Teacher>();
-        File file = new File("/workspaces/MSE-2024/datastore/_2023 NHS Teacher Recommendation Form (Responses for Project) .xlsx");   //creating a new file instance  
+        try {  
+        
+        File file = new File("/workspaces/MSE-2024/datastore/Untitled spreadsheet.xlsx");   //creating a new file instance  
         FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file  
         //creating Workbook instance that refers to .xlsx file  
         XSSFWorkbook wb = new XSSFWorkbook(fis);   
@@ -41,6 +42,7 @@ public class Parse{
         } else {
             email = "";
         }
+        System.out.println(email);
         
         cell = cellIterator.next();
         String teacher;
@@ -49,6 +51,8 @@ public class Parse{
         } else {
             teacher = "";
         }
+
+        System.out.println(teacher);
 
         cell = cellIterator.next();
         String last;
@@ -65,6 +69,7 @@ public class Parse{
         } else {
             first = "";
         }
+        System.out.println(first);
 
         cell = cellIterator.next();
         int id;
@@ -75,20 +80,33 @@ public class Parse{
         }
 
         System.out.println(id);
-        for(int i = 0; i < 9; i++){
-            if(row.getRowNum()==0 || row.getRowNum()==1){
+        boolean real = false;
+        for(int i = 0; i < 6; i++){
+            //if(row.getRowNum()==0 || row.getRowNum()==1){
             //continue; //just skip the rows if row number is 0 or 1
-           }
+           //}
+           
+           if(i > 0){
             cell = cellIterator.next();
+            if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                int num = (int)cell.getNumericCellValue();
+                if(num < 4){
+                    real = true;
+                }
+            }
+           } else {
+            cellIterator.next();
+           }
         }
 
-        //cell = cellIterator.next();
+        cell = cellIterator.next();
         String rec;
         if(cell.getCellType() == Cell.CELL_TYPE_STRING) {
             rec = cell.getStringCellValue();
         } else {
             rec  = "";
         }
+        System.out.println(rec);
         boolean recs;
         if(rec.equals("")){
             recs = false;
@@ -97,10 +115,15 @@ public class Parse{
         } else {
             recs = false;
         }
+        System.out.println(recs);
 
 
-        Teacher teach = new Teacher(teacher, email);
+        Teacher teach = new Teacher(teacher, email,recs);
         Student add = new Student(first, last, id);
+
+        if(real){
+            add.isSubThree();
+        }
 
         int loc = -1; // location of teacher in the teacher arraylist
         for(int i = 0; i < list.size(); i++){
@@ -109,10 +132,25 @@ public class Parse{
                 loc = i;
             }
         } 
+
+        System.out.println(loc);
         
         if(loc == -1){ // creates new teacher object if teacher not found, otherwise adds the student to existing teacher
         Student added = new Student(first, last, id);
             added.addTeach(teach);
+            if(list.size() == 0){
+                list.add(added);
+            }else {
+                boolean is = false;
+                int k = 0;
+                while(k < list.size() && is){
+                    if(list.get(k).getLast().compareTo(last) > 0){
+                    list.add(k,added);
+                    is = true;
+                    }
+                k++;
+                }
+            }
         } else {
             list.get(loc).addTeach(teach);
         }
@@ -127,10 +165,7 @@ public class Parse{
         default:  
          }  */
 
-         for(int i = 0; i < list.size(); i++){
-            list.get(i).printOut();
-            System.out.println();
-        }
+         
         }  
         System.out.println("");  
         }  
@@ -139,6 +174,10 @@ public class Parse{
         {  
         e.printStackTrace();  
         }  
+        for(int i = 0; i < list.size(); i++){
+            list.get(i).printOut();
+            System.out.println();
+        }
     }
 
     public static void parseReq() { // parses through student requests
