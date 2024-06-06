@@ -138,19 +138,8 @@ public class Parse{
         if(loc == -1){ // creates new teacher object if teacher not found, otherwise adds the student to existing teacher
         Student added = new Student(first, last, id);
             added.addTeach(teach);
-            if(list.size() == 0){
-                list.add(added);
-            }else {
                 boolean is = false;
-                int k = 0;
-                while(k < list.size() && is){
-                    if(list.get(k).getLast().compareTo(last) > 0){
-                    list.add(k,added);
-                    is = true;
-                    }
-                k++;
-                }
-            }
+                list.add(added);
         } else {
             list.get(loc).addTeach(teach);
         }

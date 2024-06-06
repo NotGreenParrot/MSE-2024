@@ -19,7 +19,7 @@ public class Student {
     }
 
     public boolean equals(Student other){
-        return this.firstName.equals(other.firstName) && this.studentID == other.studentID;
+        return this.lastName.equals(other.lastName) && this.studentID == other.studentID;
     }
 
     public String toString(boolean rec){
