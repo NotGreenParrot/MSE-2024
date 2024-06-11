@@ -6,13 +6,15 @@ public class Teacher {
     private String email; // without @mcpsmd.xxx
     private ArrayList<Student> list;
     private boolean isRecommended;
+    public ArrayList<Integer> ratings;
 
 
-    public Teacher(String last, String address, boolean rec){
+    public Teacher(String last, String address, boolean rec, ArrayList<Integer> rate){
         lastName = last;
         email = address;
         list = new ArrayList<Student>();
         isRecommended = rec;
+        ratings = rate;
     }
 
     public Teacher(String address, boolean rec){
@@ -20,12 +22,14 @@ public class Teacher {
         email = address;
         list = new ArrayList<>();
         isRecommended = rec;
+        ratings = new ArrayList<>();
     }
 
     public Teacher(String address){
         lastName = "";
         email = address;
         list = new ArrayList<>();
+        ratings = new ArrayList<>();
     }
 
     public void add(Student g){
@@ -53,5 +57,13 @@ public class Teacher {
     }
     public boolean isRec(){
         return isRecommended;
+    }
+
+    public void addRate(int t){
+        ratings.add(t);
+    }
+
+    public ArrayList<Integer> getRate(){
+        return ratings;
     }
 }

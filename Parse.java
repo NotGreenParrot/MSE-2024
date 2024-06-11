@@ -42,7 +42,6 @@ public class Parse{
         } else {
             email = "";
         }
-        System.out.println(email);
         
         cell = cellIterator.next();
         String teacher;
@@ -51,8 +50,6 @@ public class Parse{
         } else {
             teacher = "";
         }
-
-        System.out.println(teacher);
 
         cell = cellIterator.next();
         String last;
@@ -69,7 +66,6 @@ public class Parse{
         } else {
             first = "";
         }
-        System.out.println(first);
 
         cell = cellIterator.next();
         int id;
@@ -79,8 +75,8 @@ public class Parse{
             id  = 0;
         }
 
-        System.out.println(id);
         boolean real = false;
+        ArrayList<Integer> rate = new ArrayList<>();
         for(int i = 0; i < 6; i++){
             //if(row.getRowNum()==0 || row.getRowNum()==1){
             //continue; //just skip the rows if row number is 0 or 1
@@ -93,6 +89,7 @@ public class Parse{
                 if(num < 4){
                     real = true;
                 }
+                rate.add(num);
             }
            } else {
             cellIterator.next();
@@ -106,7 +103,6 @@ public class Parse{
         } else {
             rec  = "";
         }
-        System.out.println(rec);
         boolean recs;
         if(rec.equals("")){
             recs = false;
@@ -115,14 +111,15 @@ public class Parse{
         } else {
             recs = false;
         }
-        System.out.println(recs);
 
 
-        Teacher teach = new Teacher(teacher, email,recs);
+        Teacher teach = new Teacher(teacher, email,recs,rate);
         Student add = new Student(first, last, id);
 
-        if(real){
-            add.isSubThree();
+        for(int k = 0; k < rate.size(); k++){
+            if(rate.get(k) < 4){
+                add.isSubThree();
+            }
         }
 
         int loc = -1; // location of teacher in the teacher arraylist
@@ -132,14 +129,11 @@ public class Parse{
                 loc = i;
             }
         } 
-
-        System.out.println(loc);
         
         if(loc == -1){ // creates new teacher object if teacher not found, otherwise adds the student to existing teacher
         Student added = new Student(first, last, id);
             added.addTeach(teach);
-                boolean is = false;
-                list.add(added);
+            list.add(added);
         } else {
             list.get(loc).addTeach(teach);
         }
@@ -170,17 +164,17 @@ public class Parse{
     }
 
     public static void parseReq() { // parses through student requests
-        
-        try {  
-            ArrayList<Student> list = new ArrayList<Student>();
+        ArrayList<Student> list = new ArrayList<Student>();
             
-            ArrayList<Teacher> list2 = new ArrayList<Teacher>();
+        ArrayList<Teacher> list2 = new ArrayList<Teacher>();
+        try {  
+            
             File file = new File("/workspaces/MSE-2024/datastore/Untitled spreadsheet (1).xlsx");   //creating a new file instance  
             FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file  
             //creating Workbook instance that refers to .xlsx file  
             XSSFWorkbook wb = new XSSFWorkbook(fis);   
             XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
-            Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
+            Iterator<Row> itr = sheet.iterator();    //iterating over excel file  `
             for(int i = 0; i < 1; i++){
                 itr.next();
             } // set up the Apache POI
@@ -266,10 +260,7 @@ public class Parse{
             break;  
             default:  
              }  */
-             for(int i = 0; i < list2.size(); i++){
-                list2.get(i).print();
-                System.out.println();
-            }
+             
             }  
             System.out.println("");  
             }  
@@ -278,6 +269,10 @@ public class Parse{
             {  
             e.printStackTrace();  
             }  
+            for(int i = 0; i < list2.size(); i++){
+                list2.get(i).print();
+                System.out.println();
+            }
             
     }
 

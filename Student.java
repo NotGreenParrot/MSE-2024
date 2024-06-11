@@ -55,7 +55,7 @@ public class Student {
     }
 
     public void printOut(){
-        if(subThree){
+        if(subThree == true){
             System.out.print("[HAS RATING OF 3 OR LOWER]");
         }
         System.out.println(firstName + " " + lastName + " (" + studentID + ") Recs:");
@@ -64,7 +64,17 @@ public class Student {
                 System.out.print("DOES NOT RECOMMEND - ");
             }
             
-            System.out.println(list.get(i).getLast());
+            System.out.print(list.get(i).getLast() + "(");
+            for(int j = 0; j < list.get(i).getRate().size(); j++){
+                for(int k = 0; k < list.get(i).getRate().size(); k++){
+                    if(list.get(i).getRate().get(k) < 4){
+                    }
+                }
+
+                System.out.print(list.get(i).getRate().get(j) + " ");
+            }
+            
+            System.out.println(")");
         }
     }
 
